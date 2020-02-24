@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.sass';
 
+import WeatherApp from './components/WeatherApp';
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +21,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <WeatherApp />
     </div>
   );
 }
