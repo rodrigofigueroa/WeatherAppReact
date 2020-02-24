@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react';
 import './WeatherLocation.sass';
 //Service
-import key from '../../../service/openweather';
+import {key, BASE_URL} from '../../../service/openweather';
 //Weathericon
 import WeatherIcon from './WeatherIcon';
 import {Skeleton} from '@material-ui/lab';
@@ -14,10 +14,10 @@ const WeatherLocation = (props) => {
     const [useCountry, setCountry] = useState()
     const {city} = props;
     useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+        fetch(`${BASE_URL}${city}&appid=${key}`)
         .then( first => first.json())
         .then(data => {console.log(data); return setCountry( data); } )
-    },[])    
+    },[]);
     return(
         
         <section className="weather-location" onClick={() => handleClickWeather(city)}>
