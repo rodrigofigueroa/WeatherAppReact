@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from'react';
+import {GET_API_WEATHER_IMG} from '../../../service/openweather';
 
 const WeatherIcon = (props) => {
+
     const [iconFetch, setIconFetch] = useState();
     const {icon, title} = props;
+    const URL_ICON = GET_API_WEATHER_IMG(icon)
     useEffect(() => {
-        fetch(`http://openweathermap.org/img/wn/${icon}@2x.png`)
+        fetch(`${URL_ICON}`)
         .then(first => setIconFetch(first.url))
     },[]);
     return(
