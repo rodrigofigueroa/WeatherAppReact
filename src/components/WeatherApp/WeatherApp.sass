@@ -1,6 +1,11 @@
 .weatherapp
-    width: 100%
+    width: 90%
     display: flex
     justify-content: center
-    section
-        width: 45%
+    flex-wrap: wrap
+    .container-countries,.container-forecast
+        width: 30%
+
+@media screen and (max-width: 767px)
+    .weatherapp .container-countries, .weatherapp .container-forecast
+        width: 100%

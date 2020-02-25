@@ -6,7 +6,7 @@ const ForeCastExtended = (props) => {
     useEffect(() => {            
         fetch(`${BASE_URL}${cityForeCast}&appid=${key}`)
         .then( first => first.json())
-        .then(data => {console.log(data); return setCountryFore( data ); } )
+        .then(data => {console.log(data); return setCountryFore( data ); } );
     }, [cityForeCast])
 
     return(

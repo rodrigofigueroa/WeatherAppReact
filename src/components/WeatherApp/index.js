@@ -26,11 +26,11 @@ class WeatherApp extends React.Component {
         const Weat = this.WeatherL;
         console.log(this.state.cityForeCast);
         return(
-            <section className="weatherapp container">
-                <section>
+            <section className="weatherapp">
+                <section className="container-countries">
                     {Weat()}
                 </section>
-                <section>
+                <section className="container-forecast">
                     <ForeCastExtended cityForeCast={this.state.cityForeCast ? this.state.cityForeCast : 'Waiting' }/>
                 </section>
             </section>
