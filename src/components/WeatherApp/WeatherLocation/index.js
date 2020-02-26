@@ -12,12 +12,12 @@ const WeatherLocation = (props) => {
         HandleClickWeather(variable)
     }
     const [useCountry, setCountry] = useState()
-    const {city} = props;
-    const WeatherApi = GET_API_OPEN_WEATHER_MAP(city);
+    const {city}                   = props;
+    const WeatherApi               = GET_API_OPEN_WEATHER_MAP(city);
     useEffect(() => {
         fetch(`${WeatherApi}`)
-        .then( first => first.json())
-        .then(data => {console.log(data); return setCountry( data); } )
+            .then( first => first.json())
+                .then(data => {console.log(data); return setCountry( data); } )
     },[]);
     return(
         

@@ -1,17 +1,18 @@
-import React from 'react';
 import './WeatherApp.sass';
-import WeatherLocation from './WeatherLocation';
+import React            from 'react';
+import WeatherLocation  from './WeatherLocation';
 import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
 //APi
 const countries = ['London','Mexico','Canada','Finland'];
+
+const countriesTwo = [['London','uk'],'Mexico','Canada','Finland'];
+
 class WeatherApp extends React.Component {
     constructor(){
         super();
         this.state = {
             cityForeCast : null
-
         }
-        
     }
      HandleClickWeatherFun = (variable) => {
         console.log(`HandleClickWeatherFun ${variable}`);        
