@@ -4,9 +4,6 @@ import WeatherLocation  from './WeatherLocation';
 import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
 //APi
 const countries = ['London','Mexico','Canada','Finland'];
-
-const countriesTwo = [['London','uk'],'Mexico','Canada','Finland'];
-
 class WeatherApp extends React.Component {
     constructor(){
         super();
@@ -20,7 +17,7 @@ class WeatherApp extends React.Component {
     }
      WeatherL = () => {
         return(
-            countries.map((item) => (<WeatherLocation city={item} key={item} HandleClickWeather={this.HandleClickWeatherFun}/>))
+            countries.map((item) => (<WeatherLocation city={item} key={item} HandleClickWeatherApp={this.HandleClickWeatherFun}/>))
         )
     }
     render(){
