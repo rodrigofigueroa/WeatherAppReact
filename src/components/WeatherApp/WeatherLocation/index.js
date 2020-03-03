@@ -21,13 +21,24 @@ const WeatherLocation = (props) => {
             .then( first => first.json())
                 .then(data => {console.log(data); return setCountry( data); } )
     },[]);    
-    return(        
-        
+    const {
+        coord: {
+            lon: longitude = '',
+            lat: latitude = ''        
+        } = {},
+        weather: {
+            id,
+            main,
+            description,
+            icon
+        } 
+    } = useCountry;
+    return(                
             <section className="weather-location" onClick={() => handleClickWeather(city)}>
                     <article>    
                             {
                                 useCountry 
-                                    ? <WeatherIcon icon={useCountry ? useCountry.weather[0].icon : null} title={ useCountry.weather[0].description}/> 
+                            ? <div><WeatherIcon icon={useCountry ? useCountry.weather[0].icon : null} title={ useCountry.weather[0].description}/> {latitude}</div>
                                     : <Skeleton variant="circle" width={100} height={100}></Skeleton>
                             }            
                     </article>
