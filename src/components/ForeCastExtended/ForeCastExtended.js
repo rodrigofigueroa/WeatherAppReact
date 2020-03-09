@@ -4,9 +4,11 @@ const ForeCastExtended = (props) => {
     const {cityForeCast} = props;
     const [setKey, setCountryFore] = useState();
     useEffect(() => {            
-        fetch(`${BASE_URL}${cityForeCast}&appid=${key}`)
-        .then( first => first.json())
-        .then(data => {console.log(data); return setCountryFore( data ); } );
+        if(cityForeCast !== 'Waiting'){
+            fetch(`${BASE_URL}${cityForeCast}&appid=${key}`)
+            .then( first => first.json())
+            .then(data => {console.log(data); return setCountryFore( data ); } );
+        }
     }, [cityForeCast])
 
     return(

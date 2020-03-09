@@ -24,7 +24,7 @@ class WeatherApp extends React.Component {
     }
     render(){
         const Weat = this.WeatherL;
-        console.log(this.state.cityForeCast);
+        //console.log(this.state.cityForeCast);
         return(
             <section className="weatherapp">
                 <section className="container-countries">

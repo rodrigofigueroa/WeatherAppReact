@@ -18,6 +18,43 @@ const WeatherLocation = (props) => {
         .then( first => first.json())
         .then(data => {console.log(data); return setCountry( data); } )
     },[]);
+    //destructuring    
+    const Card = () => {
+        const {
+            coord: {
+                lon : longitud = '',
+                lat: latitude = ''
+            },
+            weather : {
+                0 : {
+                    id,
+                    main,
+                    description,
+                    icon
+                }
+            },
+            main: {
+                temp,
+                humidity
+            },
+            wind: {
+                speed,
+                deg
+            },
+            name
+             = {}
+        } = useCountry;
+        console.log(id,
+            main,
+            description,
+            icon)
+        return(
+            <div>
+                {description}
+            </div>
+        )
+    }
+    //
     return(
         
         <section className="weather-location" onClick={() => handleClickWeather(city)}>
@@ -30,7 +67,10 @@ const WeatherLocation = (props) => {
             </article>
             <article>
                 <h2>{city}</h2>
-                {useCountry ? <h2>{useCountry.weather[0].main}</h2> : null}         
+                {useCountry ? <h2>{useCountry.weather[0].main}</h2> : null}      
+                <div className="wt-card">
+                    {useCountry ? Card() : <h2>waiting</h2>}
+                </div>   
             </article>
         </section>
     )
