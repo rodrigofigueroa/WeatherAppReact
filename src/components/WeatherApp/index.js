@@ -3,7 +3,7 @@ import React            from 'react';
 import WeatherLocation  from './WeatherLocation';
 import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
 //APi
-const countries = ['London','Mexico','Canada','Finland'];
+const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinky, FI'];
 class WeatherApp extends React.Component {
     constructor(){
         super();
