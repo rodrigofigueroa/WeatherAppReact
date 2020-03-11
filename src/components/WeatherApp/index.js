@@ -29,7 +29,7 @@ class WeatherApp extends React.Component {
                     {Weat()}
                 </section>
                 <section className="container-forecast">
-                    <ForeCastExtended cityForeCast={this.state.cityForeCast ? this.state.cityForeCast : 'Waiting' }/>
+                    <ForeCastExtended cityForeCast={this.state.cityForeCast ? this.state.cityForeCast : '...Waiting' }/>
                 </section>
             </section>
         )
