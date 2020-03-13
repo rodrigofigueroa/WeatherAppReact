@@ -27,14 +27,19 @@ const ForeCastExtended = (props) => {
     const OpenWeather = GET_API_WEATHER_EXACT_PATH(ZIP);
     
     const ForeNumberDay = (OpenWeather) => {
-        console.log(OpenWeather);
+           
+           console.log(typeof OpenWeather)
+           
+        
     }
     ForeNumberDay(setKey);
 
     useEffect(() => {            
         fetch(`${OpenWeather}`)
             .then( first => first.json())
-                .then(data => {console.log(data); return setCountryFore( data ); } );
+                .then(data => {
+                    // console.log(data);
+                     return setCountryFore( data ); } );
     }, [ cityForeCast ])
 
     return(        

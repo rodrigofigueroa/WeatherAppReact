@@ -19,7 +19,9 @@ const WeatherLocation = (props) => {
     useEffect(() => {
         fetch(`${WeatherApi}`)
             .then( first => first.json())
-                .then(data => {console.log(data); return setCountry( data); } )
+                .then(data => {
+                    // console.log(data);
+                     return setCountry( data); } )
     },[]);    
     const Data = () => {
         const {

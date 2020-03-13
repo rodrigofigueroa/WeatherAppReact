@@ -12,7 +12,7 @@ class WeatherApp extends React.Component {
         }
     }
      HandleClickWeatherFun = (variable) => {
-        console.log(`HandleClickWeatherFun ${variable}`);        
+        // console.log(`HandleClickWeatherFun ${variable}`);        
             this.setState({cityForeCast : variable})     
     }
      WeatherL = () => {
@@ -22,7 +22,7 @@ class WeatherApp extends React.Component {
     }
     render(){
         const Weat = this.WeatherL;
-        console.log(this.state.cityForeCast);
+        // console.log(this.state.cityForeCast);
         return(
             <section className="weatherapp">
                 <section className="container-countries">
