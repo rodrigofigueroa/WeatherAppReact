@@ -27,12 +27,22 @@ const ForeCastExtended = (props) => {
     const OpenWeather = GET_API_WEATHER_EXACT_PATH(ZIP);
     
     const ForeNumberDay = (OpenWeather) => {
-           
-           console.log(typeof OpenWeather)
-           
-        
+                   
+        if(typeof OpenWeather !== 'undefined' ){
+                if(OpenWeather.cod !== '400'){
+                    return (
+                        OpenWeather.list.map((item,ind) => {
+                            return (
+                                <div key={ind}>
+                                    <h2>{new Date(item.dt * 1000).toString()}</h2>
+                                </div>
+                            )
+                        })
+                    )
+                }
+           }        
     }
-    ForeNumberDay(setKey);
+    console.log(ForeNumberDay(setKey))
 
     useEffect(() => {            
         fetch(`${OpenWeather}`)
@@ -46,6 +56,7 @@ const ForeCastExtended = (props) => {
         <article className="forecast-extended">
             <h2>ForeCast</h2>
              <div>{cityForeCast}</div>
+             {ForeNumberDay(setKey)}
         </article>
     )
 }
