@@ -6,9 +6,9 @@ import WeatherApp from './components/WeatherApp';
 function App() {
   return (
     <div className="App">      
-      <section className="App-header">
-        <WeatherApp />
-      </section>
+        <section className="App-header">
+            <WeatherApp />
+        </section>
     </div>
   );
 }
