@@ -35,7 +35,7 @@ const ForeCastExtended = (props) => {
     const ZIP = CityMaper(cityForeCast); 
 
     
-    const Cities = (object) =>{
+    const Cities = async (object) =>{
 
         if( object[1].cityName !== 'nothing' ){
 
@@ -49,14 +49,18 @@ const ForeCastExtended = (props) => {
 
             const MapCititesPromise = async ( PromiseValue ) => {
                 const prom = await PromiseValue
-                console.log(prom);
+                console.log(prom)
+                // console.log(prom.map((promis, index) => {
+                //     promis.list.map()
+                // }));
             }
-            MapCititesPromise(newPromise)
+            return await MapCititesPromise(newPromise)
         }
         
     };
 
-    console.log(Cities(ZIP));
+    let citiesWrapped = Cities(ZIP);
+     console.log(citiesWrapped)
 
     
    
