@@ -25,3 +25,10 @@ export const GET_API_WEATHER_EXACT_PATH = (countryCode) =>{
     const BASE_URL_EXACT = `http://openweathermap.org/data/2.5/weather?zip=${55080},${mx}&appid=${key}&units=metric`
     return BASE_URL_ID_EXACT
 }
+
+export const RETURN_AXIOS_POST = (countryId) => {
+    const key            = '56ef8cfe0a0091a259799e537a7aaac9';
+    const BASE_URL_ID_EXACT = `http://api.openweathermap.org/data/2.5/forecast?id=${countryId}&appid=${key}&units=metric`;
+
+        return BASE_URL_ID_EXACT
+}

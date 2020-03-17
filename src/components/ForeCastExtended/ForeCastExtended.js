@@ -1,5 +1,6 @@
 import  React,{useEffect, useState} from 'react';
-import  {GET_API_WEATHER_EXACT_PATH} from '../../service/openweather';
+import  {GET_API_WEATHER_EXACT_PATH, RETURN_AXIOS_POST} from '../../service/openweather';
+import axios from 'axios';
 import './ForeCastExtended.sass'
 const ForeCastExtended = (props) => {    
     const { cityForeCast } = props;
@@ -11,7 +12,12 @@ const ForeCastExtended = (props) => {
         switch(city){
             case 'Mexico City, mx':
                 console.log(`city: ${city}`)
-                return [['3827406','Benito Juarez']]
+                // return [['3827406','Benito Juarez']]
+                return [
+                    { idCity: '3827406', cityName: 'Benito Juarez'},
+                    { idCity: '3827406', cityName: 'Benito Juarez'}
+
+                ]
                 break;
             case 'London, uk':
                 console.log(`city: ${city}`)
@@ -21,72 +27,85 @@ const ForeCastExtended = (props) => {
                 break;
             case 'Helsinky, FI':
                 console.log(`city: ${city}`)
+                break;
                 default :
-                return [['Click in the country of you like',['nothing']]]
+                return [{idCity : 'Click in the country of you like'}, {cityName : 'nothing'}]
         }
     }
-    const ZIP = CityMaper(cityForeCast);    
-    const OpenWeather = GET_API_WEATHER_EXACT_PATH(ZIP[0][0]);
+    const ZIP = CityMaper(cityForeCast); 
+
+    const Cities = (object) =>{
+
+        debugger
+        if( object[1].cityName !== 'nothing' ){
+            return Promise.all(object.map((city, index) =>{ 
+                const  OpenWeather =  RETURN_AXIOS_POST(city.idCity);
+                return axios.get(OpenWeather).then(data => data);
+            })).then(cities => cities);
+        }
+    };
+console.log(Cities(ZIP));
+   
     
-    const ForeNumberDay = (OpenWeather) => {
+    // const ForeNumberDay = (OpenWeather) => {
                    
-        if(typeof OpenWeather !== 'undefined' ){
-                if(OpenWeather.cod !== '400'){
-                    console.log(OpenWeather);
-                    // debugger
-                    return (
-                        OpenWeather.list.map((item,ind) => {
-                            const { 
-                                dt,
-                                main: {
-                                    temp,
-                                    feels_like,
-                                    temp_min,
-                                    temp_max,
-                                    pressure,
-                                    sea_level,
-                                    grnd_level,
-                                    humidity,
-                                    temp_kf,
-                            },
-                            weather : { 
-                                0 : {
-                                    id,
-                                    main,
-                                    description,
-                                    icon,
-                                } 
-                            },
-                            dt_txt
-                        } = item;
-                            return (
-                                <div key={ ind } className="week-forecast">
-                                    <h2>{ new Date(dt * 1000).toString() }</h2>
-                                    <div className="card-week-forecast">
+    //     if(typeof OpenWeather !== 'undefined' ){
+    //             if(OpenWeather.cod !== '400'){
+    //                 console.log(OpenWeather);
+    //                 // debugger
+    //                 return (
+    //                     OpenWeather.list.map((item,ind) => {
+    //                         const { 
+    //                             dt,
+    //                             main: {
+    //                                 temp,
+    //                                 feels_like,
+    //                                 temp_min,
+    //                                 temp_max,
+    //                                 pressure,
+    //                                 sea_level,
+    //                                 grnd_level,
+    //                                 humidity,
+    //                                 temp_kf,
+    //                         },
+    //                         weather : { 
+    //                             0 : {
+    //                                 id,
+    //                                 main,
+    //                                 description,
+    //                                 icon,
+    //                             } 
+    //                         },
+    //                         dt_txt
+    //                     } = item;
+    //                         return (
+    //                             <div key={ ind } className="week-forecast">
+    //                                 <h2>{ new Date(dt * 1000).toString() }</h2>
+    //                                 <div className="card-week-forecast">
 
-                                    </div>
-                                </div>
-                            )
-                        })
-                    )
-                }
-           }        
-    }
-    console.log(ForeNumberDay(setKey))
+    //                                 </div>
+    //                             </div>
+    //                         )
+    //                     })
+    //                 )
+    //             }
+    //        }        
+    // }
+    // console.log(ForeNumberDay(setKey))
 
-    useEffect(() => {            
-        fetch(`${OpenWeather}`)
-            .then( first => first.json())
-                .then(data => {
-                    // console.log(data);
-                     return setCountryFore( data ); } );
-    }, [ cityForeCast ])
+    // useEffect(() => {            
+    //     fetch(`${OpenWeather}`)
+    //         .then( first => first.json())
+    //             .then(data => {
+    //                 // console.log(data);
+    //                  return setCountryFore( data ); } );
+    // }, [ cityForeCast ])
 
     return(        
         <article className="forecast-extended">
             <h2>ForeCast</h2>
-            <div>{ZIP[0][1]} {cityForeCast}</div>
-             {ForeNumberDay(setKey)}
+            {/* <div>{ZIP[0][1]} {cityForeCast}</div> */}
+             {/* {ForeNumberDay(setKey)} */}
         </article>
     )
 }
