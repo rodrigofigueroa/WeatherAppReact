@@ -15,7 +15,7 @@ const ForeCastExtended = (props) => {
                 // return [['3827406','Benito Juarez']]
                 return [
                     { idCity: '3827406', cityName: 'Benito Juarez'},
-                    { idCity: '3827406', cityName: 'Benito Juarez'}
+                    { idCity: '3521305', cityName: 'Benito Juarez'}
 
                 ]
                 break;
@@ -34,15 +34,22 @@ const ForeCastExtended = (props) => {
     }
     const ZIP = CityMaper(cityForeCast); 
 
+    
     const Cities = (object) =>{
 
         if( object[1].cityName !== 'nothing' ){
-            let newPromise =  Promise.all(object.map((city, index) =>{ 
+
+            let newPromise = Promise.all(object.map((city, index) =>{ 
+
                 const  OpenWeather =  RETURN_AXIOS_POST(city.idCity);
+
                 return axios.get(OpenWeather).then(data => data.data);
+
             })).then(cities => cities);
-            const MapCititesPromise = (promiseWithcities) => {
-                console.log(promiseWithcities);        
+
+            const MapCititesPromise = async ( PromiseValue ) => {
+                const prom = await PromiseValue
+                console.log(prom);
             }
             MapCititesPromise(newPromise)
         }
