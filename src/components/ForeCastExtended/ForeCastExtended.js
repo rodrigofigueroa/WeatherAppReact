@@ -36,15 +36,22 @@ const ForeCastExtended = (props) => {
 
     const Cities = (object) =>{
 
-        debugger
         if( object[1].cityName !== 'nothing' ){
-            return Promise.all(object.map((city, index) =>{ 
+            let newPromise =  Promise.all(object.map((city, index) =>{ 
                 const  OpenWeather =  RETURN_AXIOS_POST(city.idCity);
-                return axios.get(OpenWeather).then(data => data);
+                return axios.get(OpenWeather).then(data => data.data);
             })).then(cities => cities);
+            const MapCititesPromise = (promiseWithcities) => {
+                console.log(promiseWithcities);        
+            }
+            MapCititesPromise(newPromise)
         }
+        
     };
-console.log(Cities(ZIP));
+
+    console.log(Cities(ZIP));
+
+    
    
     
     // const ForeNumberDay = (OpenWeather) => {
