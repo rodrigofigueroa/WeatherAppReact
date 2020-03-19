@@ -39,7 +39,7 @@ const ForeCastExtended = (props) => {
 
         if( object[1].cityName !== 'nothing' ){
 
-            let newPromise = Promise.all(object.map((city, index) =>{ 
+            let newPromise =  await Promise.all(object.map((city, index) =>{ 
 
                 const  OpenWeather =  RETURN_AXIOS_POST(city.idCity);
 
@@ -47,22 +47,52 @@ const ForeCastExtended = (props) => {
 
             })).then(cities => cities);
 
-            const MapCititesPromise = async ( PromiseValue ) => {
-                const prom = await PromiseValue
-                console.log(prom)
-                // console.log(prom.map((promis, index) => {
-                //     promis.list.map()
-                // }));
+            const MapCititesPromise =  ( PromiseValue ) => {
+                const prom = PromiseValue                
+                 return  prom.map((promis, index) => {                    
+                   return promis.list.slice(0,10).map((item,index) => {
+                    const { 
+                            dt,
+                            main: {
+                                temp,
+                                feels_like,
+                                temp_min,
+                                temp_max,
+                                pressure,
+                                sea_level,
+                                grnd_level,
+                                humidity,
+                                temp_kf,
+                        },
+                        weather : { 
+                            0 : {
+                                id,
+                                main,
+                                description,
+                                icon,
+                            } 
+                        },
+                        dt_txt
+                        } = item;
+                        return (
+                            <div key={index}>
+                                <h2>{`${promis.city.name}`}</h2>
+                                <h2>{`${promis.city.id}`}</h2>
+                                <p>
+                                    {`${dt} ${temp} ${humidity}  ${main} ${description}`}
+                                </p>
+                            </div>
+                        )
+                    });
+
+                });
             }
-            return await MapCititesPromise(newPromise)
+            return MapCititesPromise(newPromise)
         }
         
     };
 
-    let citiesWrapped = Cities(ZIP);
-     console.log(citiesWrapped)
-
-    
+     
    
     
     // const ForeNumberDay = (OpenWeather) => {
@@ -111,19 +141,30 @@ const ForeCastExtended = (props) => {
     // }
     // console.log(ForeNumberDay(setKey))
 
-    // useEffect(() => {            
-    //     fetch(`${OpenWeather}`)
-    //         .then( first => first.json())
-    //             .then(data => {
-    //                 // console.log(data);
-    //                  return setCountryFore( data ); } );
-    // }, [ cityForeCast ])
+    useEffect(() => {            
+        // fetch(`${OpenWeather}`)
+        //     .then( first => first.json())
+        //         .then(data => {
+        //             // console.log(data);
+        //              return setCountryFore( data ); } );
+
+                    Cities(ZIP).then( data =>{ 
+                        console.log(data); return setCountryFore( data )});
+    }, [ cityForeCast ])
 
     return(        
         <article className="forecast-extended">
             <h2>ForeCast</h2>
             {/* <div>{ZIP[0][1]} {cityForeCast}</div> */}
              {/* {ForeNumberDay(setKey)} */}
+             { 
+                setKey ?
+                    setKey.map((itemOne,index) => {
+                        return itemOne.map((itemHtml,index) => {
+                            return itemHtml
+                        })
+                    })
+                : <h3>no</h3> }
         </article>
     )
 }
