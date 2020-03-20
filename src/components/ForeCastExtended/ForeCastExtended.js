@@ -1,5 +1,6 @@
 import  React,{useEffect, useState} from 'react';
 import  {GET_API_WEATHER_EXACT_PATH, RETURN_AXIOS_POST} from '../../service/openweather';
+import WeatherIcon from '../WeatherApp/WeatherLocation/WeatherIcon';
 import axios from 'axios';
 import './ForeCastExtended.sass'
 const ForeCastExtended = (props) => {    
@@ -48,7 +49,8 @@ const ForeCastExtended = (props) => {
             })).then(cities => cities);
 
             const MapCititesPromise =  ( PromiseValue ) => {
-                const prom = PromiseValue                
+                    const prom = PromiseValue          
+                    console.log(prom);      
                  return  prom.map((promis, index) => {                    
                    return promis.list.slice(0,10).map((item,index) => {
                     const { 
@@ -76,11 +78,18 @@ const ForeCastExtended = (props) => {
                         } = item;
                         return (
                             <div key={index}>
+                                <WeatherIcon icon={icon} title={`${promis.city.name} ${description}`}/>
                                 <h2>{`${promis.city.name}`}</h2>
-                                <h2>{`${promis.city.id}`}</h2>
                                 <p>
-                                    {`${dt} ${temp} ${humidity}  ${main} ${description}`}
+                                    {`${new Date(dt * 1000).toString()} `}
                                 </p>
+                                <p>
+                                    {`${Math.round(temp)} °C`}
+                                </p>
+                                <p>
+                                    {`humidity ${humidity}%`}
+                                </p>
+                                <p>{`${description}`}</p>
                             </div>
                         )
                     });
@@ -164,7 +173,7 @@ const ForeCastExtended = (props) => {
                             return itemHtml
                         })
                     })
-                : <h3>no</h3> }
+                : <h3>Waiting...</h3> }
         </article>
     )
 }

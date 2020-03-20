@@ -1,17 +1,22 @@
 .weatherapp
-    width: 90%
+    width: 95%
     display: flex
     justify-content: center
     flex-wrap: wrap
     .container-countries,.container-forecast
-        width: 30%        
+        overflow-y: auto 
+        width: 45%       
+        height: 100vh
+        padding: 20px
+        &::-webkit-scrollbar
+            display: none
 @media screen and (max-width: 767px)
     .weatherapp
         width: 100%
     .weatherapp .container-countries, .weatherapp .container-forecast
         padding: 5px
         width: 100%
-        overflow: auto
+        // overflow: auto
 @media screen and (max-width: 480px)
     .weatherapp .container-countries, .weatherapp .container-forecast
         height: 300px
