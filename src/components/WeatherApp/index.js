@@ -3,7 +3,7 @@ import React            from 'react';
 import WeatherLocation  from './WeatherLocation';
 import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
 //APi
-const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinky, FI'];
+const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinki, FI'];
 class WeatherApp extends React.Component {
     constructor(){
         super();
@@ -28,6 +28,7 @@ class WeatherApp extends React.Component {
                 <section className="container-countries">
                     {Weat()}
                 </section>
+                <div className="separator"></div>
                 <section className="container-forecast">
                     <ForeCastExtended cityForeCast={this.state.cityForeCast ? this.state.cityForeCast : '...Waiting' }/>
                 </section>

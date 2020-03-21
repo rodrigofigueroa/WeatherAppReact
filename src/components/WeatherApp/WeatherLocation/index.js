@@ -25,26 +25,14 @@ const WeatherLocation = (props) => {
     },[]);    
     const Data = () => {
         const {
-            coord: {
-                lon: longitude = '',
-                lat: latitude = ''        
-            } = {},
             weather: { 0: {
-                    id,
-                    main,
-                    description,
-                    icon
+                    description
                 }
             } = '',
             main : {
                 temp,
-                pressure,
                 humidity
             } = '',
-            wind: {
-                speed,
-                deg
-            },
             name
         } = useCountry;
         return (

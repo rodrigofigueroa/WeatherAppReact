@@ -1,5 +1,5 @@
 import  React,{useEffect, useState} from 'react';
-import  {GET_API_WEATHER_EXACT_PATH, RETURN_AXIOS_POST} from '../../service/openweather';
+import  {RETURN_AXIOS_POST} from '../../service/openweather';
 import WeatherIcon from '../WeatherApp/WeatherLocation/WeatherIcon';
 import axios from 'axios';
 import './ForeCastExtended.sass'
@@ -16,18 +16,33 @@ const ForeCastExtended = (props) => {
                 // return [['3827406','Benito Juarez']]
                 return [
                     { idCity: '3827406', cityName: 'Benito Juarez'},
-                    { idCity: '3521305', cityName: 'Benito Juarez'}
+                    { idCity: '3521305', cityName: 'Polanco'},
+                    { idCity: '3970677', cityName: 'San Carlos Ecatepec'}
 
                 ]
                 break;
             case 'London, uk':
-                console.log(`city: ${city}`)
+                return [
+                    {idCity: '2650225', cityName: 'Edinburgh'},
+                    {idCity: '7535661', cityName: 'London Borough of Harrow'},
+                    {idCity: '2643741', cityName: 'City of London'},
+                    {idCity: '2643743', cityName: 'London'}
+                ]
                 break;
             case 'Canada, CA':
-                console.log(`city: ${city}`)
+                return [
+                    {idCity: '6173331', cityName: 'Vancouver'},
+                    {idCity: '6167865', cityName: 'Toronto'},
+                    {idCity: '6115047', cityName: 'Québec'},
+                    {idCity: '6325494', cityName: 'Québec'},
+                    {idCity: '5379439', cityName: 'Ontario'},
+                    {idCity: '6141242', cityName: 'Saskatchewan'}
+                ]                
                 break;
-            case 'Helsinky, FI':
-                console.log(`city: ${city}`)
+            case 'Helsinki, FI':
+                return [
+                    {idCity: '658225', cityName: 'Helsinki'}
+                ]
                 break;
                 default :
                 return [{idCity : 'Click in the country of you like'}, {cityName : 'nothing'}]
@@ -37,10 +52,10 @@ const ForeCastExtended = (props) => {
 
     
     const Cities = async (object) =>{
+        debugger
+        if( object[0].cityName !== 'nothing' ){
 
-        if( object[1].cityName !== 'nothing' ){
-
-            let newPromise =  await Promise.all(object.map((city, index) =>{ 
+            let newPromise =  await Promise.all(object.map((city) =>{ 
 
                 const  OpenWeather =  RETURN_AXIOS_POST(city.idCity);
 
@@ -51,44 +66,34 @@ const ForeCastExtended = (props) => {
             const MapCititesPromise =  ( PromiseValue ) => {
                     const prom = PromiseValue          
                     console.log(prom);      
-                 return  prom.map((promis, index) => {                    
+                 return  prom.map((promis) => {                    
                    return promis.list.slice(0,10).map((item,index) => {
                     const { 
                             dt,
                             main: {
                                 temp,
-                                feels_like,
-                                temp_min,
-                                temp_max,
-                                pressure,
-                                sea_level,
-                                grnd_level,
-                                humidity,
-                                temp_kf,
+                                humidity
                         },
                         weather : { 
-                            0 : {
-                                id,
-                                main,
+                            0 : {                                
                                 description,
                                 icon,
                             } 
-                        },
-                        dt_txt
+                        }
                         } = item;
                         return (
                             <div key={index}>
                                 <WeatherIcon icon={icon} title={`${promis.city.name} ${description}`}/>
                                 <h2>{`${promis.city.name}`}</h2>
-                                <p>
+                                <h3>
                                     {`${new Date(dt * 1000).toString()} `}
-                                </p>
-                                <p>
+                                </h3>
+                                <h4>
                                     {`${Math.round(temp)} °C`}
-                                </p>
-                                <p>
+                                </h4>
+                                <h5>
                                     {`humidity ${humidity}%`}
-                                </p>
+                                </h5>
                                 <p>{`${description}`}</p>
                             </div>
                         )
@@ -101,75 +106,18 @@ const ForeCastExtended = (props) => {
         
     };
 
-     
-   
-    
-    // const ForeNumberDay = (OpenWeather) => {
-                   
-    //     if(typeof OpenWeather !== 'undefined' ){
-    //             if(OpenWeather.cod !== '400'){
-    //                 console.log(OpenWeather);
-    //                 // debugger
-    //                 return (
-    //                     OpenWeather.list.map((item,ind) => {
-    //                         const { 
-    //                             dt,
-    //                             main: {
-    //                                 temp,
-    //                                 feels_like,
-    //                                 temp_min,
-    //                                 temp_max,
-    //                                 pressure,
-    //                                 sea_level,
-    //                                 grnd_level,
-    //                                 humidity,
-    //                                 temp_kf,
-    //                         },
-    //                         weather : { 
-    //                             0 : {
-    //                                 id,
-    //                                 main,
-    //                                 description,
-    //                                 icon,
-    //                             } 
-    //                         },
-    //                         dt_txt
-    //                     } = item;
-    //                         return (
-    //                             <div key={ ind } className="week-forecast">
-    //                                 <h2>{ new Date(dt * 1000).toString() }</h2>
-    //                                 <div className="card-week-forecast">
-
-    //                                 </div>
-    //                             </div>
-    //                         )
-    //                     })
-    //                 )
-    //             }
-    //        }        
-    // }
-    // console.log(ForeNumberDay(setKey))
-
     useEffect(() => {            
-        // fetch(`${OpenWeather}`)
-        //     .then( first => first.json())
-        //         .then(data => {
-        //             // console.log(data);
-        //              return setCountryFore( data ); } );
-
-                    Cities(ZIP).then( data =>{ 
-                        console.log(data); return setCountryFore( data )});
+        Cities(ZIP).then( data =>{ 
+            console.log(data); return setCountryFore( data )});
     }, [ cityForeCast ])
 
     return(        
         <article className="forecast-extended">
             <h2>ForeCast</h2>
-            {/* <div>{ZIP[0][1]} {cityForeCast}</div> */}
-             {/* {ForeNumberDay(setKey)} */}
              { 
                 setKey ?
-                    setKey.map((itemOne,index) => {
-                        return itemOne.map((itemHtml,index) => {
+                    setKey.map((itemOne) => {
+                        return itemOne.map((itemHtml) => {
                             return itemHtml
                         })
                     })
