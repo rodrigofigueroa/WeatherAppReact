@@ -52,7 +52,6 @@ const ForeCastExtended = (props) => {
 
     
     const Cities = async (object) =>{
-        debugger
         if( object[0].cityName !== 'nothing' ){
 
             let newPromise =  await Promise.all(object.map((city) =>{ 
