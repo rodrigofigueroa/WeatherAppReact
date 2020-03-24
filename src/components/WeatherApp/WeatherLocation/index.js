@@ -22,7 +22,7 @@ const WeatherLocation = (props) => {
                 .then(data => {
                     // console.log(data);
                      return setCountry( data); } )
-    },[]);    
+    },[WeatherApi]);    
     const Data = () => {
         const {
             weather: { 0: {

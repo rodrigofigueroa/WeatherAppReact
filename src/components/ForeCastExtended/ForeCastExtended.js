@@ -19,16 +19,14 @@ const ForeCastExtended = (props) => {
                     { idCity: '3521305', cityName: 'Polanco'},
                     { idCity: '3970677', cityName: 'San Carlos Ecatepec'}
 
-                ]
-                break;
+                ]                
             case 'London, uk':
                 return [
                     {idCity: '2650225', cityName: 'Edinburgh'},
                     {idCity: '7535661', cityName: 'London Borough of Harrow'},
                     {idCity: '2643741', cityName: 'City of London'},
                     {idCity: '2643743', cityName: 'London'}
-                ]
-                break;
+                ]                
             case 'Canada, CA':
                 return [
                     {idCity: '6173331', cityName: 'Vancouver'},
@@ -37,19 +35,15 @@ const ForeCastExtended = (props) => {
                     {idCity: '6325494', cityName: 'Québec'},
                     {idCity: '5379439', cityName: 'Ontario'},
                     {idCity: '6141242', cityName: 'Saskatchewan'}
-                ]                
-                break;
+                ]                                
             case 'Helsinki, FI':
                 return [
                     {idCity: '658225', cityName: 'Helsinki'}
-                ]
-                break;
+                ]                
                 default :
                 return [{idCity : 'Click in the country of you like'}, {cityName : 'nothing'}]
         }
     }
-    const ZIP = CityMaper(cityForeCast); 
-
     
     const Cities = async (object) =>{
         if( object[0].cityName !== 'nothing' ){
@@ -106,8 +100,11 @@ const ForeCastExtended = (props) => {
     };
 
     useEffect(() => {            
-        Cities(ZIP).then( data =>{ 
-            console.log(data); return setCountryFore( data )});
+        const ZIP = CityMaper(cityForeCast); 
+        if(ZIP[1].cityName !== 'nothing'){
+            Cities(ZIP).then( data =>{ 
+                console.log(data); return setCountryFore( data )});
+        }
     }, [ cityForeCast ])
 
     return(        

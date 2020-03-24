@@ -9,7 +9,7 @@ const WeatherIcon = (props) => {
     useEffect(() => {
         fetch(`${URL_ICON}`)
             .then(first => setIconFetch(first.url))
-    },[]);
+    },[URL_ICON]);
     return(
         <img src={iconFetch ? iconFetch : null} alt={iconFetch ? title : null}></img>
     )
