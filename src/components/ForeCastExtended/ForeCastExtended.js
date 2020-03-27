@@ -9,7 +9,7 @@ const ForeCastExtended = (props) => {
 
     useEffect(() => {            
         const ZIP = CityMaper(cityForeCast); 
-        debugger
+        // debugger
         if(ZIP[0].cityName !== 'nothing'){
             Cities(ZIP).then( data =>{ 
                 console.log(data); return setCountryFore( data )});
