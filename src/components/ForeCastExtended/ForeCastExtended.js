@@ -24,26 +24,33 @@ const ForeCastExtended = (props) => {
              { 
                 setKey ?
                     setKey.map((itemOne,index) => {
-                            let StateNow = states[index]                            
-                        return itemOne.map((itemHtml,ind) => {
-                            const { dt, main: { temp, humidity }, weather : { 0 : { description, icon,} } } = itemHtml;
-                            return (
-                                <div key={ind}>
-                                    <WeatherIcon icon={icon} title={`${description}`}/>
-                                    <h2>{`${StateNow !== undefined ? StateNow : 'ji'}`}</h2>
-                                    <h3>
-                                        {`${new Date(dt * 1000).toString()} `}
-                                    </h3>
-                                    <h4>
-                                        {`${Math.round(temp)} °C`}
-                                    </h4>
-                                    <h5>
-                                        {`humidity ${humidity}%`}
-                                    </h5>
-                                    <p>{`${description}`}</p>
-                                </div>
-                            ) 
-                        })
+                            let StateNow = states[index]  
+                        return(
+                            <div className="acordeon">
+                                {
+
+                                    itemOne.map((itemHtml,ind) => {
+                                        const { dt, main: { temp, humidity }, weather : { 0 : { description, icon,} } } = itemHtml;
+                                        return (
+                                            <div key={ind}>
+                                                <WeatherIcon icon={icon} title={`${description}`}/>
+                                                <h2>{`${StateNow !== undefined ? StateNow : 'ji'}`}</h2>
+                                                <h3>
+                                                    {`${new Date(dt * 1000).toString()} `}
+                                                </h3>
+                                                <h4>
+                                                    {`${Math.round(temp)} °C`}
+                                                </h4>
+                                                <h5>
+                                                    {`humidity ${humidity}%`}
+                                                </h5>
+                                                <p>{`${description}`}</p>
+                                            </div>
+                                        ) 
+                                    })
+                                }
+                            </div>
+                        )
                     })
                 : <h3>Waiting...</h3> }
         </article>
