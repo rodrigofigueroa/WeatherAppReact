@@ -1,4 +1,3 @@
-import React from 'react';
 import  {RETURN_AXIOS_POST} from './openweather';
 import axios from 'axios';
 
