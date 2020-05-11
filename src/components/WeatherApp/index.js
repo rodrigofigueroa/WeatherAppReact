@@ -2,12 +2,12 @@ import './WeatherApp.sass';
 import React            from 'react';
 import WeatherLocation  from './WeatherLocation';
 import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
-import { createStore } from 'redux';
+import store from '../../store'
 import { setCity } from '../../actions';
 //APi
 const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinki, FI'];
 //redux store 
-const store = createStore(() => {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 
 class WeatherApp extends React.Component {
     constructor(){
