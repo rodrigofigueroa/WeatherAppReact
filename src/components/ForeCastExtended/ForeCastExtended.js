@@ -16,7 +16,8 @@ const ForeCastExtended = props => {
         setCountryFore(null)
         if(ZIP[0].idCity !== 'Click in the country of you like'){
             Cities(ZIP).then( data =>{ 
-                console.log(data); return setCountryFore( data )});
+                // console.log(data); 
+                return setCountryFore( data )});
                const NewZip = ZIP.map(ine => ine.cityName)
                     setState(NewZip)
                 }

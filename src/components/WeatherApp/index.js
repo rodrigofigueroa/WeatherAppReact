@@ -2,6 +2,7 @@ import React            from 'react';
 import { connect } from 'react-redux';
 import WeatherLocation  from './WeatherLocation';
 import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
+import PropTypes from 'prop-types';
 //import store from '../../store'
 import { setCity } from '../../actions';
 import './WeatherApp.sass';
@@ -44,6 +45,9 @@ class WeatherApp extends React.Component {
     }
 }
 
+WeatherApp.propTypes = {
+    setCity: PropTypes.func.isRequired
+}
 
 const MapHandleActions = dispatch => ({
     setCity: value => dispatch(setCity(value))
