@@ -10,8 +10,8 @@ const WeatherLocationContainer = props => {
     const HandleClickWeatherFun = variable => {
         console.log(`HandleClickWeatherFun ${variable}`);        
             // this.setState({cityForeCast : variable})                           
-            setCity(variable)
-            props.setCity('uhu')
+            // setCity(variable)
+            props.setCity(variable)
     }
      const WeatherL = () => {
         return(
