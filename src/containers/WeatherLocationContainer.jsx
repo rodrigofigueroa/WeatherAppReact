@@ -1,7 +1,7 @@
 import React from 'react';
 import WeatherLocation from '../components/WeatherApp/WeatherLocation';
 import PropTypes from 'prop-types';
-import { setCity } from '../actions/index';
+import { setCity2 } from '../actions/index';
 import { connect } from 'react-redux';
 const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinki, FI'];
 
@@ -11,7 +11,7 @@ const WeatherLocationContainer = props => {
         console.log(`HandleClickWeatherFun ${variable}`);        
             // this.setState({cityForeCast : variable})                           
             // setCity(variable)
-            props.setCity(variable)
+            props.setCity2(variable)
     }
      const WeatherL = () => {
         return(
@@ -26,11 +26,11 @@ const WeatherLocationContainer = props => {
 } 
 
 WeatherLocationContainer.propTypes = {
-    setCity: PropTypes.func.isRequired
+    setCity2: PropTypes.func.isRequired
 }
 
 const MapHandleActions = dispatch => ({
-    setCity: value => dispatch(setCity(value))
+    setCity2(value){dispatch(setCity2(value))}
 });
 
 export default connect(null, MapHandleActions)(WeatherLocationContainer);

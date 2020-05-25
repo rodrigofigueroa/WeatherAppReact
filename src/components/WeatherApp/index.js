@@ -1,10 +1,11 @@
 import React            from 'react';
 // import { connect } from 'react-redux';
 // import WeatherLocation  from './WeatherLocation';
-import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
+// import ForeCastExtended from '../ForeCastExtended/ForeCastExtended';
 //import store from '../../store'
 // import { setCity } from '../../actions';
 import WeatherLocationContainer from '../../containers/WeatherLocationContainer';
+import ForeCastExtendedContainer from '../../containers/ForeCastExtendedContainer';
 import './WeatherApp.sass';
 //APi
 // const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinki, FI'];
@@ -37,7 +38,7 @@ class WeatherApp extends React.Component {
                 </section>                
                 <div className="separator"></div>
                 <section className="container-forecast">
-                    <ForeCastExtended cityForeCast={this.state.cityForeCast ? this.state.cityForeCast : '...Waiting' }/>
+                    <ForeCastExtendedContainer />
                 </section>
             </section>
         )
