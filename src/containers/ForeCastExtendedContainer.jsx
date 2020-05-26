@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ForeCastExtended from '../components/ForeCastExtended/ForeCastExtended';
-import { connect } from 'react-redux';
 
 class ForeCastExtendedContainer extends Component {
     
@@ -9,9 +9,9 @@ class ForeCastExtendedContainer extends Component {
         return (
             <ForeCastExtended 
                 cityForeCast={
-                                this.props.city 
+                                this.props.city
                             ? 
-                                this.props.city 
+                                this.props.city
                             : 
                                 '...Waiting' 
                             }/>

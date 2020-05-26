@@ -1,8 +1,8 @@
 import  React,{useEffect, useState} from 'react';
-import './ForeCastExtended.sass';
 import {CityMaper} from '../../service/CityMaper';
 import {Cities} from '../../service/Cities';
 import WeatherIcon from '../WeatherApp/WeatherLocation/WeatherIcon';
+import './ForeCastExtended.sass';
 
 const ForeCastExtended = props => {    
 
