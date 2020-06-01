@@ -1,7 +1,7 @@
 import React from 'react';
 import WeatherLocation from '../components/WeatherApp/WeatherLocation';
 import PropTypes from 'prop-types';
-import { setCity } from '../actions/index';
+import { FetcForecast } from '../actions/index';
 import { connect } from 'react-redux';
 const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinki, FI'];
 
@@ -28,7 +28,7 @@ WeatherLocationContainer.propTypes = {
 }
 
 const MapHandleActions = dispatch => ({
-    setCity2(value){dispatch(setCity(value))}
+    setCity2(value){dispatch(FetcForecast(value))}
 });
 
 export default connect(null, MapHandleActions)(WeatherLocationContainer);

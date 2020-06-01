@@ -1,10 +1,6 @@
-export const CityMaper = (city) => {
-    // console.log(city);
-    // debugger
+export const CityMaper = city => {
     switch(city){
-        case 'Mexico City, mx':
-            // console.log(`city: ${city}`)
-            // return [['3827406','Benito Juarez']]
+        case 'Mexico City, mx':            
             return [
                 { idCity: '3827406', cityName: 'Benito Juarez'},
                 { idCity: '3521305', cityName: 'Polanco'},

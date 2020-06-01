@@ -12,11 +12,9 @@ const ForeCastExtended = props => {
     
     useEffect(() => {            
         const ZIP = CityMaper(cityForeCast); 
-        // debugger
         setCountryFore(null)
         if(ZIP[0].idCity !== 'Click in the country of you like'){
-            Cities(ZIP).then( data =>{ 
-                // console.log(data); 
+            Cities(ZIP).then( data =>{
                 return setCountryFore( data )});
                const NewZip = ZIP.map(ine => ine.cityName)
                     setState(NewZip)
@@ -25,7 +23,6 @@ const ForeCastExtended = props => {
     return(        
         <article className="forecast-extended">
             <h2>ForeCast</h2>
-            {}
              { 
                 setKey ?
                     setKey.map((itemOne,index) => {
@@ -33,7 +30,6 @@ const ForeCastExtended = props => {
                         return(
                             <div className="acordeon" key={`${index}-accordeon`}>
                                 {
-
                                     itemOne.map((itemHtml,ind) => {
                                         const { dt, main: { temp, humidity }, weather : { 0 : { description, icon,} } } = itemHtml;
                                         return (
