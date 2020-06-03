@@ -1,29 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ForeCastExtended from '../components/ForeCastExtended/ForeCastExtended';
 
-class ForeCastExtendedContainer extends Component {
-    
-    render() {        
+const ForeCastExtendedContainer = props => {
+        const { city, data, ZIP} = props;
+        // console.log(props)
         return (
             <ForeCastExtended 
                 cityForeCast={
-                                this.props.city
+                                city
                             ? 
-                                this.props.city
+                                {city, data}
                             : 
                                 '...Waiting' 
                             }/>
         );
     }
-}
 
 
 ForeCastExtendedContainer.propTypes = {
     city: PropTypes.string.isRequired
 };
 
-const mapContainerForecas = ({ city }) => ({ city })
+const mapContainerForecas = ({ city , cities, ZIP }) => ({ city, data: cities[city], ZIP })
 
 export default connect(mapContainerForecas, null)(ForeCastExtendedContainer);

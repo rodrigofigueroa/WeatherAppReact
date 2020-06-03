@@ -9,22 +9,29 @@ const ForeCastExtended = props => {
     const { cityForeCast } = props;
     const [setKey, setCountryFore] = useState();
     const [states,setState] = useState();    
-    
+    console.log(props)
     useEffect(() => {            
-        const ZIP = CityMaper(cityForeCast); 
+        // const ZIP = CityMaper(cityForeCast);
+        // const ZIP = cityForeCast.data.ZIP;
         setCountryFore(null)
-        if(ZIP[0].idCity !== 'Click in the country of you like'){
-            Cities(ZIP).then( data =>{
-                return setCountryFore( data )});
-               const NewZip = ZIP.map(ine => ine.cityName)
-                    setState(NewZip)
-                }
+        // if(ZIP[0].idCity !== 'Click in the country of you like'){
+        //     Cities(ZIP).then( data =>{
+        //         return setCountryFore( data )});
+        //     }
+        if(cityForeCast.data !== undefined){
+            const ZIP = cityForeCast.data.ZIP;
+            setCountryFore(cityForeCast.data.data)
+            // console.log(cityForeCast.data.data)
+            const NewZip = ZIP.map(ine => ine.cityName)
+                 setState(NewZip)
+        }
     }, [ cityForeCast ])
     return(        
         <article className="forecast-extended">
             <h2>ForeCast</h2>
              { 
-                setKey ?
+                setKey 
+                ?
                     setKey.map((itemOne,index) => {
                             let StateNow = states[index]  
                         return(
