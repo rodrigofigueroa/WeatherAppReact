@@ -1,6 +1,4 @@
 import  React,{useEffect, useState} from 'react';
-import {CityMaper} from '../../service/CityMaper';
-import {Cities} from '../../service/Cities';
 import WeatherIcon from '../WeatherApp/WeatherLocation/WeatherIcon';
 import './ForeCastExtended.sass';
 
@@ -9,19 +7,12 @@ const ForeCastExtended = props => {
     const { cityForeCast } = props;
     const [setKey, setCountryFore] = useState();
     const [states,setState] = useState();    
-    console.log(props)
-    useEffect(() => {            
-        // const ZIP = CityMaper(cityForeCast);
-        // const ZIP = cityForeCast.data.ZIP;
+    // console.log(props)
+    useEffect(() => {   
         setCountryFore(null)
-        // if(ZIP[0].idCity !== 'Click in the country of you like'){
-        //     Cities(ZIP).then( data =>{
-        //         return setCountryFore( data )});
-        //     }
         if(cityForeCast.data !== undefined){
             const ZIP = cityForeCast.data.ZIP;
             setCountryFore(cityForeCast.data.data)
-            // console.log(cityForeCast.data.data)
             const NewZip = ZIP.map(ine => ine.cityName)
                  setState(NewZip)
         }

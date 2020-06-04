@@ -10,3 +10,10 @@ export const cities = (state = {}, action) => {
             return state
     }
 }
+
+export const DataForecastReducer = (state, city) => {
+    console.log(city)    
+    return (
+        state[city]
+    ) 
+}
