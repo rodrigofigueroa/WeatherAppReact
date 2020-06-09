@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect'
 import {SET_FORECAST_DATA } from '../actions/index'
 
 export const cities = (state = {}, action) => {
@@ -11,9 +12,4 @@ export const cities = (state = {}, action) => {
     }
 }
 
-export const DataForecastReducer = (state, city) => {
-    console.log(city)    
-    return (
-        state[city]
-    ) 
-}
+export const DataForecastReducer = createSelector((state, city) => state[city], data => data)
