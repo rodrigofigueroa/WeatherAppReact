@@ -16,10 +16,7 @@ const WeatherLocationContainer = props => {
             countries.map(item => (<WeatherLocation city={item} key={item} HandleClickWeatherApp={HandleClickWeatherFun}/>))
         )
     }
-    return(
-        <>
-            {WeatherL()}
-        </>
+    return(<>{WeatherL()}</>
     )
 } 
 
