@@ -1,26 +1,31 @@
 import React, {useEffect,useState} from 'react';
+import { connect } from 'react-redux';
 import './WeatherLocation.sass';
 //Service
-///import {GET_API_OPEN_WEATHER_MAP} from '../../../service/openweather';
+import {GET_API_OPEN_WEATHER_MAP} from '../../../service/openweather';
 //Weathericon
 import WeatherIcon from './WeatherIcon';
 import {Skeleton} from '@material-ui/lab';
 
-const WeatherLocation = (HandleClickWeatherApp, city, data) => {
+const WeatherLocation = (props) => {
+    
     const handleClickWeather = (variable) =>{
-        HandleClickWeatherApp(variable)
+        const {HandleClickWeatherApp} = props;
+            HandleClickWeatherApp(variable)
     }
     const [useCountry, setCountry] = useState()
-    
-//    const WeatherApi               = GET_API_OPEN_WEATHER_MAP(city);
+    const {city}                   = props;
+    const WeatherApi               = GET_API_OPEN_WEATHER_MAP(city);
 
-    // useEffect(() => {
-    //     fetch(`${WeatherApi}`)
-    //         .then( first => first.json())
-    //             .then(data => {
-    //                 // console.log(data);
-    //                  return setCountry( data); } )
-    // },[WeatherApi]);    
+    useEffect(() => {
+        fetch(`${WeatherApi}`)
+            .then( first => first.json())
+                .then(data => {
+                    // console.log(data);
+                     return setCountry( data); } )
+    },[
+        WeatherApi
+    ]);    
     const Data = () => {
         const {
             weather: { 0: {
@@ -45,9 +50,7 @@ const WeatherLocation = (HandleClickWeatherApp, city, data) => {
     return(                
             <section className="weather-location" onClick={() => handleClickWeather(city)}>
                     <article>    
-                            {
-                                useCountry 
-                            ? 
+                            {useCountry ? 
                                 <div>
                                     <WeatherIcon 
                                         icon={useCountry 
@@ -57,9 +60,7 @@ const WeatherLocation = (HandleClickWeatherApp, city, data) => {
                                                 } 
                                         title={ useCountry.weather[0].description}/>
                                 </div>
-                            : 
-                                <Skeleton variant="circle" width={100} height={100}></Skeleton>
-                            }            
+                            : <Skeleton variant="circle" width={100} height={100}></Skeleton>}            
                     </article>
                     <article>                            
                             { useCountry ? Data() : <h2>...Waiting</h2> }       
@@ -68,4 +69,8 @@ const WeatherLocation = (HandleClickWeatherApp, city, data) => {
     )
 }
 
-export default WeatherLocation;
+const mapStateProps = dispatch => ({
+    
+})
+export default connect(null,mapStateProps)(WeatherLocation);
+// export default WeatherLocation;

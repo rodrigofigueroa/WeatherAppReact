@@ -7,7 +7,7 @@ const ForeCastExtended = props => {
     const { cityForeCast } = props;
     const [setKey, setCountryFore] = useState();
     const [states,setState] = useState();    
-    console.log(props)
+    // console.log(props)
     useEffect(() => {   
         setCountryFore(null)
         if(cityForeCast.data !== undefined){

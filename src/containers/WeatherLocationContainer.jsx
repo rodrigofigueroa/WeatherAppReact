@@ -1,4 +1,4 @@
-import {React, useEffect} from 'react';
+import React from 'react';
 import WeatherLocation from '../components/WeatherApp/WeatherLocation';
 import PropTypes from 'prop-types';
 import { FetcForecast, setWeather } from '../actions/index';
@@ -6,28 +6,28 @@ import { connect } from 'react-redux';
 const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinki, FI'];
 
 const WeatherLocationContainer = props => {
-
-    useEffect(() => {
-        this.props.setWeather(props.cities);
-    },[])
-
+    
     const HandleClickWeatherFun = variable => {
         console.log(`HandleClickWeatherFun ${variable}`);                    
             props.setCity2(variable)
+            // props.setWeather(variable)
+            
     }
      const WeatherL = () => {
         return(
-            countries.map(city => (
+            countries.map(item => (
                 <WeatherLocation 
-                    key={city.key} 
-                    city={city.name} 
-                    HandleClickWeatherApp={HandleClickWeatherFun}
-                    data={city.data}
-                />)
-                )
+                    city={item} 
+                    key={item} 
+                    HandleClickWeatherApp={HandleClickWeatherFun}/
+                >)
+            )
         )
     }
-    return(<>{WeatherL()}</>
+    return(
+        <>
+            {WeatherL()}
+        </>
     )
 } 
 
@@ -36,8 +36,7 @@ WeatherLocationContainer.propTypes = {
 }
 
 const MapHandleActions = dispatch => ({
-    setCity2(value){dispatch(FetcForecast(value))},
-    setWeather: cities => dispatch(setWeather(cities))
+    setCity2(value){dispatch(FetcForecast(value))}
 });
 
 export default connect(null, MapHandleActions)(WeatherLocationContainer);
