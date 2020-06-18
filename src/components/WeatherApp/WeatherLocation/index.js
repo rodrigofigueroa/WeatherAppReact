@@ -1,28 +1,26 @@
 import React, {useEffect,useState} from 'react';
 import './WeatherLocation.sass';
 //Service
-import {GET_API_OPEN_WEATHER_MAP} from '../../../service/openweather';
+///import {GET_API_OPEN_WEATHER_MAP} from '../../../service/openweather';
 //Weathericon
 import WeatherIcon from './WeatherIcon';
 import {Skeleton} from '@material-ui/lab';
 
-const WeatherLocation = (props) => {
+const WeatherLocation = (HandleClickWeatherApp, city, data) => {
     const handleClickWeather = (variable) =>{
-
-        const {HandleClickWeatherApp} = props;
         HandleClickWeatherApp(variable)
     }
     const [useCountry, setCountry] = useState()
-    const {city}                   = props;
-    const WeatherApi               = GET_API_OPEN_WEATHER_MAP(city);
+    
+//    const WeatherApi               = GET_API_OPEN_WEATHER_MAP(city);
 
-    useEffect(() => {
-        fetch(`${WeatherApi}`)
-            .then( first => first.json())
-                .then(data => {
-                    // console.log(data);
-                     return setCountry( data); } )
-    },[WeatherApi]);    
+    // useEffect(() => {
+    //     fetch(`${WeatherApi}`)
+    //         .then( first => first.json())
+    //             .then(data => {
+    //                 // console.log(data);
+    //                  return setCountry( data); } )
+    // },[WeatherApi]);    
     const Data = () => {
         const {
             weather: { 0: {
