@@ -31,13 +31,14 @@ export const FetcForecast = payload => {
 
 export const setWeather = payload => {
     console.log(payload)
+    // debugger
     const WeatherApi               = GET_API_OPEN_WEATHER_MAP(payload.city);
     return dispatch => {
         dispatch(getWeatherCity(payload.city));
         fetch(`${WeatherApi}`)
             .then( first => first.json())
                 .then(data => {
-                        dispatch(setWeatherCity(payload.city, data));
+                        dispatch(setWeatherCity(payload, data));
                     } )
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import WeatherLocation from '../components/WeatherApp/WeatherLocation';
 import PropTypes from 'prop-types';
-import { FetcForecast, setWeather } from '../actions/index';
+import { FetcForecast } from '../actions/index';
 import { connect } from 'react-redux';
 const countries = ['London, uk','Mexico City, mx','Canada, CA','Helsinki, FI'];
 

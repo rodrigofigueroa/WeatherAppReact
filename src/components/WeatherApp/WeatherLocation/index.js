@@ -6,8 +6,10 @@ import {GET_API_OPEN_WEATHER_MAP} from '../../../service/openweather';
 //Weathericon
 import WeatherIcon from './WeatherIcon';
 import {Skeleton} from '@material-ui/lab';
+import {setWeather} from '../../../actions'
 
-const WeatherLocation = (props) => {
+const WeatherLocation = props => {
+    props.setWeather(props.city)
     
     const handleClickWeather = (variable) =>{
         const {HandleClickWeatherApp} = props;
@@ -70,7 +72,7 @@ const WeatherLocation = (props) => {
 }
 
 const mapStateProps = dispatch => ({
-    
+    setWeather(value){dispatch(setWeather(value))}
 })
 export default connect(null,mapStateProps)(WeatherLocation);
 // export default WeatherLocation;

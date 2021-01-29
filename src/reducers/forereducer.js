@@ -11,6 +11,7 @@ export const cities = (state = {}, action) => {
             const city = action.payload;
             return {...state, [city]: {weather: null}}}
         case SET_WEATHER_CITY:{
+            console.log(action)
             const {city, data } = action.payload;
             return {...state, [city]: { data }}}
         default:
